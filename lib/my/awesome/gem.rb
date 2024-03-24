@@ -6,7 +6,11 @@ module My
   module Awesome
     module Gem
       class Error < StandardError; end
-      # Your code goes here...
+
+      class Base
+        
+        yaml_to_json_fastify.convert("/Users/user/GitHub/Rails/my-awesome-gem/devise.uk.yml")
+      end
     end
   end
 end
