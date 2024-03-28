@@ -10,6 +10,7 @@ require "standard/rake"
 require "yaml"
 require "json"
 require "yaml_to_json_fastify"
+require_relative "lib/my/awesome/gem"
 
 YamlToJsonFastify.configure do |config|
   config.exclude_patterns = ["devise.*", "some_file.yml"]
@@ -18,11 +19,16 @@ end
 RSpec::Core::RakeTask.new(:spec)
 
 task :prep_build do
-  YamlToJsonFastify::Base.convert
+  # convert all files exclude exclude_patterns
+  # YamlToJsonFastify::Base.convert  
+  
+  # read formatted data depends on enviroment
+  # use RAKE_ENV=development rake build for convert files in development
+  # use RAKE_ENV=production rake build for convert files in production
+  YamlToJsonFastify::Base.load_formatted_data("en.uk.yml")
 end
 
 task build: :prep_build
 
 task default: %i[spec standard]
 
-# use RAILS_ENV=development rake build for convert files in production
